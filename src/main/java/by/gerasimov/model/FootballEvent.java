@@ -10,4 +10,9 @@ import lombok.EqualsAndHashCode;
 public class FootballEvent extends Event {
 
     private String site;
+
+    @Override
+    public String toString() {
+        return "FootballEvent: " + getName() + " site:" + getSite();
+    }
 }

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FootballEventRepository extends EventRepository<FootballEvent> {
     List<FootballEvent> findByNameContaining(String name);
+    List<FootballEvent> findAll();
 }
