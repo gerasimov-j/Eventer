@@ -1,42 +1,47 @@
 package by.gerasimov.controller;
 
-import by.gerasimov.model.FootballEvent;
+import by.gerasimov.model.Event;
 import by.gerasimov.service.EventService;
-import by.gerasimov.service.FootballEventService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("event")
+@RequestMapping("events")
 public class EventController {
 
     @Autowired
-    private EventService eventService;
-
-    @Autowired
-    private FootballEventService footballEventService;
+    private EventService service;
 
     @GetMapping
-    public String getAll() {
-        return eventService.findAll().toString();
+    public List<Event> getAll() {
+        return service.findAll();
     }
 
-    @GetMapping("football")
-    public String getAllFootball() {
-        return footballEventService.findAll().toString();
+    @PostMapping
+    Event newEmployee(@RequestBody Event newEvent) {
+        return service.save(newEvent);
     }
 
     @GetMapping("{id}")
-    public String getById(@PathVariable String id) {
-        return eventService.findOne(id).toString();
+    public Event getById(@PathVariable Long id) {
+        return service.findOne(id);
     }
 
-    @GetMapping("football/{id}")
-    public String getFootballById(@PathVariable String id) {
-        FootballEvent event = footballEventService.findOne(id);
-        return event.toString();
+    @PutMapping("{id}")
+    public Event put(@RequestBody Event newEvent, @PathVariable Long id) {
+        return service.put(newEvent, id);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable Long id) {
+        service.deleteById(id);
     }
 }

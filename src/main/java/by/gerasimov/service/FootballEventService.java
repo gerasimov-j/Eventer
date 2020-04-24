@@ -1,10 +1,9 @@
 package by.gerasimov.service;
 
-import by.gerasimov.exception.NotFoundException;
+import by.gerasimov.exception.EventNotFoundException;
 import by.gerasimov.model.FootballEvent;
 import by.gerasimov.repository.FootballEventRepository;
 import java.util.List;
-import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +13,8 @@ public class FootballEventService {
     @Autowired
     private FootballEventRepository eventRepository;
 
-    public FootballEvent findOne(String id) {
-        return eventRepository.findById(Long.valueOf(id)).orElseThrow(NotFoundException::new);
+    public FootballEvent findOne(Long id) {
+        return eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException(id));
     }
 
     public List<FootballEvent> findAll() {

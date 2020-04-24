@@ -28,4 +28,11 @@ public class Event {
     public Event() {
 
     }
+
+    public Event(Event event) {
+        name = event.getName();
+        description = event.getDescription();
+        datetime = event.getDatetime();
+        location = event.getLocation();
+    }
 }

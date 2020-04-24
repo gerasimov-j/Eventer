@@ -1,6 +1,6 @@
 package by.gerasimov.service;
 
-import by.gerasimov.exception.NotFoundException;
+import by.gerasimov.exception.EventNotFoundException;
 import by.gerasimov.model.Event;
 import by.gerasimov.repository.EventRepository;
 import java.util.List;
@@ -11,13 +11,27 @@ import org.springframework.stereotype.Service;
 public class EventService {
 
     @Autowired
-    private EventRepository<Event> eventRepository;
+    private EventRepository<Event> repository;
 
-    public Event findOne(String id) {
-        return eventRepository.findById(Long.valueOf(id)).orElseThrow(NotFoundException::new);
+    public Event findOne(Long id) {
+        return repository.findById(id).orElseThrow(() -> new EventNotFoundException(id));
     }
 
     public List<Event> findAll() {
-        return eventRepository.findAll();
+        return repository.findAll();
+    }
+
+    public Event save(Event newEvent) {
+        return repository.save(newEvent);
+    }
+
+    public Event put(Event newEvent, Long id) {
+        newEvent.setId(id);
+        repository.save(newEvent);
+        return newEvent;
+    }
+
+    public void deleteById(Long id) {
+        repository.deleteById(id);
     }
 }
