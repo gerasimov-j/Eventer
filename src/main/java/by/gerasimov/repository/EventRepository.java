@@ -7,8 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EventRepository<E extends Event> extends CrudRepository<E, Long> {
-    List<E> findByNameContaining(String name);
-    Optional<E> findById(Long id);
-    List<E> findAll();
+public interface EventRepository extends CrudRepository<Event, Long> {
+    List<Event> findByNameContaining(String name);
+    Optional<Event> findById(Long id);
+    List<Event> findAll();
 }

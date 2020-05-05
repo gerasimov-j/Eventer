@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class EventService {
 
     @Autowired
-    private EventRepository<Event> repository;
+    private EventRepository repository;
 
     public Event findOne(Long id) {
         return repository.findById(id).orElseThrow(() -> new EventNotFoundException(id));

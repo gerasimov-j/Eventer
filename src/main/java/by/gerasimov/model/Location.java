@@ -18,8 +18,8 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long latitude;
-    private long longitude;
+    private double latitude;
+    private double longitude;
     @OneToOne(fetch = FetchType.EAGER)
     private Address address;
     private String name;
@@ -27,13 +27,13 @@ public class Location {
     public Location() {
     }
 
-    public Locality getLocality() {
-        return address.getLocality();
-    }
-
-    public Country getCountry() {
-        return address.getLocality().getCountry();
-    }
+//    public Locality getLocality() {
+//        return address.getLocality();
+//    }
+//
+//    public Country getCountry() {
+//        return address.getLocality().getCountry();
+//    }
 
     @Override
     public String toString() {

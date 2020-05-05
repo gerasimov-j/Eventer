@@ -1,7 +1,7 @@
 package by.gerasimov.controller;
 
-import by.gerasimov.model.FootballEvent;
-import by.gerasimov.service.FootballEventService;
+import by.gerasimov.model.StadiumLocation;
+import by.gerasimov.service.StadiumLocationService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,29 +14,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("events/football")
-public class FootballEventController {
+@RequestMapping("locations/stadiums")
+public class StadiumLocationController {
 
     @Autowired
-    private FootballEventService service;
+    private StadiumLocationService service;
 
     @GetMapping
-    public List<FootballEvent> getAll() {
+    public List<StadiumLocation> getAll() {
         return service.findAll();
     }
 
     @GetMapping("{id}")
-    public FootballEvent getById(@PathVariable Long id) {
+    public StadiumLocation getById(@PathVariable Long id) {
         return service.findOne(id);
     }
 
     @PostMapping
-    FootballEvent save(@RequestBody FootballEvent newEvent) {
+    StadiumLocation save(@RequestBody StadiumLocation newEvent) {
         return service.save(newEvent);
     }
 
     @PutMapping("{id}")
-    public FootballEvent put(@RequestBody FootballEvent newEvent, @PathVariable Long id) {
+    public StadiumLocation put(@RequestBody StadiumLocation newEvent, @PathVariable Long id) {
         return service.put(newEvent, id);
     }
 

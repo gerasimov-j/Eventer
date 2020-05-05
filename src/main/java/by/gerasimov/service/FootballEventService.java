@@ -2,7 +2,7 @@ package by.gerasimov.service;
 
 import by.gerasimov.exception.EventNotFoundException;
 import by.gerasimov.model.FootballEvent;
-import by.gerasimov.repository.EventRepository;
+import by.gerasimov.repository.FootballEventRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,27 +11,27 @@ import org.springframework.stereotype.Service;
 public class FootballEventService {
 
     @Autowired
-    private EventRepository<FootballEvent> eventRepository;
+    private FootballEventRepository repository;
 
     public FootballEvent findOne(Long id) {
-        return eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException(id));
+        return repository.findById(id).orElseThrow(() -> new EventNotFoundException(id));
     }
 
     public List<FootballEvent> findAll() {
-        return eventRepository.findAll();
+        return repository.findAll();
     }
 
     public FootballEvent save(FootballEvent newEvent) {
-        return eventRepository.save(newEvent);
+        return repository.save(newEvent);
     }
 
     public FootballEvent put(FootballEvent newEvent, Long id) {
         newEvent.setId(id);
-        eventRepository.save(newEvent);
+        repository.save(newEvent);
         return newEvent;
     }
 
     public void deleteById(Long id) {
-        eventRepository.deleteById(id);
+        repository.deleteById(id);
     }
 }

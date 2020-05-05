@@ -11,4 +11,7 @@ public class StadiumLocation extends Location {
 
     private int capacity;
     private String site;
+
+    public StadiumLocation() {
+    }
 }
