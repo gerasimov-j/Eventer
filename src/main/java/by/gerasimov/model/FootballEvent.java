@@ -11,6 +11,9 @@ public class FootballEvent extends Event {
 
     private String site;
 
+    public FootballEvent() {
+    }
+
     @Override
     public String toString() {
         return "FootballEvent: " + getName() + " site:" + getSite();

@@ -26,7 +26,7 @@ public class EventController {
     }
 
     @PostMapping
-    Event newEmployee(@RequestBody Event newEvent) {
+    Event save(@RequestBody Event newEvent) {
         return service.save(newEvent);
     }
 
