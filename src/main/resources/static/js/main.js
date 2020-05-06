@@ -1,25 +1,25 @@
-Vue.component('strokastrany', {
-	props: ['stroka'],
-	template: '<div> <i>{{ stroka.kluj }}</i> {{ stroka.nazva }}</div>'
+Vue.component('country-row', {
+	props: ['country'],
+	template: '<div> <i>{{ country.id }}</i> {{ country.name }}</div>'
 })
 
-Vue.component('listikstran', {
-	props: ['stroki'],
+Vue.component('country-list', {
+	props: ['countries'],
   template:
     '<div>'+
-      '<strokastrany v-for="strana in stroki" :stroka="strana" :key="strana.kluj"/>' +
+      '<country-row v-for="country in countries" :country="country" :key="country.id"/>' +
     '</div>'
 })
 
-var lkl = new Vue({
+var app = new Vue({
   el: '#app',
   template:
-	  '<listikstran :stroki="strany"/>',
+	  '<country-list :countries="countries"/>',
   data: {
-    strany: [
-        {kluj: '1', nazva:'Belarus'},
-        {kluj: '2', nazva:'Russia'},
-        {kluj: '3', nazva:'Ukraine'},
+    countries: [
+        {id: '1', name:'Belarus'},
+        {id: '2', name:'Russia'},
+        {id: '3', name:'Ukraine'},
     ]
   }
 })
